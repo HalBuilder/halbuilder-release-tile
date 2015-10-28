@@ -3,7 +3,7 @@
 
     <groupId>com.theoryinpractise</groupId>
     <artifactId>halbuilder-release-tile</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>tile</packaging>
 
     <name>halbuilder-release-tile</name>
@@ -24,7 +24,7 @@
         <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
         <developerConnection>scm:git:git@github.com:HalBuilder//${project.artifactId}.git</developerConnection>
         <url>http://www.gotohal.net</url>
-      <tag>halbuilder-release-tile-1.0.2</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <developers>
