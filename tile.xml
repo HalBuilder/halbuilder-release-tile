@@ -13,7 +13,7 @@
 
     <scm>
         <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
-        <developerConnection>scm:git:git@github.com:HalBuilder//${project.artifactId}.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</developerConnection>
         <url>http://www.gotohal.net</url>
     </scm>
 
