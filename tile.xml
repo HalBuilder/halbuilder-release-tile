@@ -11,6 +11,10 @@
     </altSnapshotDeploymentRepository>
   </properties>
 
+  <prerequisites>
+    <maven>3.3.3</maven>
+  </prerequisites>
+
   <scm>
     <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
     <developerConnection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</developerConnection>
