@@ -1,84 +1,108 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <properties>
-        <altReleaseDeploymentRepository>
-            sonatype-staging::default::http://oss.sonatype.org/service/local/staging/deploy/maven2/
-        </altReleaseDeploymentRepository>
-        <altSnapshotDeploymentRepository>
-            sonatype-snapshots::default::http://oss.sonatype.org/content/repositories/snapshots/
-        </altSnapshotDeploymentRepository>
-    </properties>
+  <properties>
+    <altReleaseDeploymentRepository>
+      sonatype-staging::default::http://oss.sonatype.org/service/local/staging/deploy/maven2/
+    </altReleaseDeploymentRepository>
+    <altSnapshotDeploymentRepository>
+      sonatype-snapshots::default::http://oss.sonatype.org/content/repositories/snapshots/
+    </altSnapshotDeploymentRepository>
+  </properties>
 
-    <scm>
-        <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
-        <developerConnection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</developerConnection>
-        <url>http://www.gotohal.net</url>
-    </scm>
+  <scm>
+    <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
+    <developerConnection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</developerConnection>
+    <url>http://www.gotohal.net</url>
+  </scm>
 
-    <developers>
-        <developer>
-            <id>talios</id>
-            <name>Mark Derricutt</name>
-            <email>mark@talios.com</email>
-            <url>http://twitter.com/talios</url>
-        </developer>
-    </developers>
+  <developers>
+    <developer>
+      <id>talios</id>
+      <name>Mark Derricutt</name>
+      <email>mark@talios.com</email>
+      <url>http://twitter.com/talios</url>
+    </developer>
+  </developers>
 
-    <licenses>
-        <license>
-            <name>Apache License</name>
-        </license>
-    </licenses>
+  <licenses>
+    <license>
+      <name>Apache License</name>
+    </license>
+  </licenses>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <build>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
-                <configuration>
-                    <preparationGoals>clean install</preparationGoals>
-                    <goals>deploy</goals>
-                    <pushChanges>false</pushChanges>
-                    <localCheckout>true</localCheckout>
-                    <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
-                </configuration>
-            </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
-    </build>
+      </build>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <id>version-checks</id>
+            <goals>
+              <goal>display-plugin-updates</goal>
+              <goal>display-dependency-updates</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <preparationGoals>clean install</preparationGoals>
+          <goals>deploy</goals>
+          <pushChanges>false</pushChanges>
+          <localCheckout>true</localCheckout>
+          <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
