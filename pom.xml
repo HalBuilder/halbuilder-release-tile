@@ -12,17 +12,24 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <altReleaseDeploymentRepository>
-      sonatype-staging::default::http://oss.sonatype.org/service/local/staging/deploy/maven2/
-    </altReleaseDeploymentRepository>
-    <altSnapshotDeploymentRepository>
-      sonatype-snapshots::default::http://oss.sonatype.org/content/repositories/snapshots/
-    </altSnapshotDeploymentRepository>
   </properties>
 
   <prerequisites>
     <maven>3.3.3</maven>
   </prerequisites>
+
+  <distributionManagement>
+    <repository>
+      <id>sonatype-staging</id>
+      <name>oss.sonatype.org Staging Repository</name>
+      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>sonatype-snapshots</id>
+      <name>oss.sonatype.org github Release Repository Snapshot Repository</name>
+      <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <scm>
     <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
@@ -81,7 +88,7 @@
       <plugin>
         <groupId>io.repaint.maven</groupId>
         <artifactId>tiles-maven-plugin</artifactId>
-        <version>2.4</version>
+        <version>2.5</version>
         <extensions>true</extensions>
       </plugin>
       <plugin>
