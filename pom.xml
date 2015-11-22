@@ -3,7 +3,7 @@
 
   <groupId>com.theoryinpractise</groupId>
   <artifactId>halbuilder-release-tile</artifactId>
-  <version>1.0.5-SNAPSHOT</version>
+  <version>1.0.6-SNAPSHOT</version>
   <packaging>tile</packaging>
 
   <name>halbuilder-release-tile</name>
@@ -88,7 +88,7 @@
       <plugin>
         <groupId>io.repaint.maven</groupId>
         <artifactId>tiles-maven-plugin</artifactId>
-        <version>2.5</version>
+        <version>2.6</version>
         <extensions>true</extensions>
       </plugin>
       <plugin>
