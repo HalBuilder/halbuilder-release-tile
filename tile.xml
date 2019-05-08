@@ -14,9 +14,6 @@
       <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
-  <prerequisites>
-    <maven>3.3.3</maven>
-  </prerequisites>
   <scm>
     <connection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</connection>
     <developerConnection>scm:git:git@github.com:HalBuilder/${project.artifactId}.git</developerConnection>
@@ -67,21 +64,44 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>tidy-maven-plugin</artifactId>
+        <version>1.1.0</version>
+      </plugin>
+      <plugin>
+        <groupId>com.github.ekryd.sortpom</groupId>
+        <artifactId>sortpom-maven-plugin</artifactId>
+        <version>2.10.0</version>
+        <configuration>
+          <sortProperties>true</sortProperties>
+          <sortDependencies>scope,groupId,artifactId</sortDependencies>
+          <sortPlugins>groupId,artifactId</sortPlugins>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
       </plugin>
       <plugin>
         <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
+        <version>3.0.0-M1</version>
       </plugin>
       <plugin>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
+        <version>3.0.0-M1</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
+        <version>3.0.0-M3</version>
+        <configuration>
+          <trimStackTrace>false</trimStackTrace>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.0.0-M3</version>
         <configuration>
           <trimStackTrace>false</trimStackTrace>
         </configuration>
@@ -89,7 +109,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-        <version>2.2</version>
+        <version>2.7</version>
         <executions>
           <execution>
             <id>version-checks</id>
@@ -104,7 +124,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jdeps-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.1</version>
         <executions>
           <execution>
             <goals>
@@ -116,15 +136,16 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!--<plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
-        <version>1.0.0-beta-5</version>
+        <version>1.0.0</version>
         <configuration>
-          <flattenMode>oss</flattenMode>
+          <flattenedPomFilename>flattened-pom.xml</flattenedPomFilename>
+          <outputDirectory>${project.build.directory}</outputDirectory>
+          <flattenMode>ossrh</flattenMode>
         </configuration>
         <executions>
-          <!-- enable flattening -->
           <execution>
             <id>flatten</id>
             <phase>process-resources</phase>
@@ -132,7 +153,6 @@
               <goal>flatten</goal>
             </goals>
           </execution>
-          <!-- ensure proper cleanup -->
           <execution>
             <id>flatten.clean</id>
             <phase>clean</phase>
@@ -141,12 +161,17 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5.3</version>
         <configuration>
-          <preparationGoals>clean install</preparationGoals>
+          <preparationGoals>
+            clean
+            com.github.ekryd.sortpom:sortpom-maven-plugin:sort
+            tidy:pom
+            install
+          </preparationGoals>
           <goals>deploy</goals>
           <pushChanges>false</pushChanges>
           <localCheckout>true</localCheckout>
