@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.theoryinpractise</groupId>
   <artifactId>halbuilder-release-tile</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>1.0.8-SNAPSHOT</version>
   <packaging>tile</packaging>
   <name>halbuilder-release-tile</name>
   <description>HalBuilder Release Tile</description>
@@ -17,12 +17,12 @@
     <repository>
       <id>sonatype-staging</id>
       <name>oss.sonatype.org Staging Repository</name>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
     <snapshotRepository>
       <id>sonatype-snapshots</id>
       <name>oss.sonatype.org github Release Repository Snapshot Repository</name>
-      <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
   <scm>
